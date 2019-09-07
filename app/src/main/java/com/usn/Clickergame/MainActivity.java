@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     final static int MULTIPLIER_BASE = 1;
     final static int MULTIPLIER_MAXIMUM = 10;
 
-    // default verdier
+    // variabler som faktis blir brukt
     int counter = 0;
     int clickMultiplier = 1;
     int comboChountDown = COMBO_BASE;
@@ -50,8 +50,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateCounter() {
-
-        counter = counter + clickMultiplier;
+        int summ = clickMultiplier; // summens base er hvor mangen poeng du får i et trykk
+        comboChountDown--; // ved og trykke bygger du deg kombo
+        if (comboChountDown <= 0){ // om nedtellingen til komboen blir 0 så får man kombo bonusen som er en dobling av poengene tjent
+            summ = summ * 2;
+            comboChountDown = comboLevel; // så startes kombo-nedtellingen igjen
+        }
+        counter = summ;
         counterDisplay.setText("Points: " + counter);
 
     }
