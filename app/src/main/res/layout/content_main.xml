@@ -9,57 +9,43 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/counterDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="328dp"
-        android:text="Hello Verden"
+        android:layout_marginBottom="8dp"
+        android:text="press the button!"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fab" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="295dp"
         android:layout_height="139dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="128dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="376dp"
         android:clickable="true"
         android:focusable="true"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:text="responses"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/pointsDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="15122"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/responseTextMain" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="369dp"
         android:layout_height="222dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/pointsDisplay"
+        app:layout_constraintBottom_toTopOf="@+id/counterDisplay"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button">
-
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <LinearLayout
@@ -70,15 +56,17 @@
                 android:id="@+id/upgrade1NameMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="clicking multiplier" />
+                android:text="clicking multiplier"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/upgrade1NumberMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="34" /><!--kilde https://stackoverflow.com/questions/2099249/aligning-textviews-on-the-left-and-right-edges-in-android-layout-->
-                android:text="4" />
+                android:text="34"
+                android:textColor="@android:color/black" /><!--kilde https://stackoverflow.com/questions/2099249/aligning-textviews-on-the-left-and-right-edges-in-android-layout-->
+            android:text="4" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,16 +77,28 @@
                 android:id="@+id/upgrade2NameMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="combo builder" />
+                android:text="combo builder"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/upgrade2NumberMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="64" /><!--kilde https://stackoverflow.com/questions/2099249/aligning-textviews-on-the-left-and-right-edges-in-android-layout-->
-                android:text="4820" />
+                android:text="64"
+                android:textColor="@android:color/black" /><!--kilde https://stackoverflow.com/questions/2099249/aligning-textviews-on-the-left-and-right-edges-in-android-layout-->
+            android:text="4820" />
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/responseTextMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Click the red button to earn points!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

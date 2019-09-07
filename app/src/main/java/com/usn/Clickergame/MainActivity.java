@@ -3,10 +3,8 @@ package com.usn.Clickergame;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.view.Menu;
@@ -15,8 +13,18 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView ;
+    TextView counterDisplay ;
+
+    final static int COMBO_BASE = 10;
+    final static int COMBO_MINIMUM = 3;
+    final static int MULTIPLIER_BASE = 1;
+    final static int MULTIPLIER_MAXIMUM = 10;
+
+    // default verdier
     int counter = 0;
+    int clickMultiplier = 1;
+    int comboChountDown = COMBO_BASE;
+    int comboLevel = MULTIPLIER_MAXIMUM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
-
+        counterDisplay = findViewById(R.id.counterDisplay);
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -42,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateCounter() {
-        textView = findViewById(R.id.textView);
-        counter++;
-        textView.setText("Clicks :  " + counter);
+
+        counter = counter + clickMultiplier;
+        counterDisplay.setText("Points: " + counter);
 
     }
 
