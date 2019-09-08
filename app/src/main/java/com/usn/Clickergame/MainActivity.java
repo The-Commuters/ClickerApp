@@ -17,14 +17,15 @@ public class MainActivity extends AppCompatActivity {
 
     final static int COMBO_BASE = 10;
     final static int COMBO_MINIMUM = 3;
+    final static int COMBO_POWER_BASE = 2;
     final static int MULTIPLIER_BASE = 1;
     final static int MULTIPLIER_MAXIMUM = 10;
 
     // variabler som faktis blir brukt
-    int counter = 0;
-    int clickMultiplier = 1;
-    int comboChountDown = COMBO_BASE;
-    int comboLevel = MULTIPLIER_MAXIMUM;
+    int counter;
+    int clickMultiplier;
+    int comboChountDown;
+    int comboLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         //toolbar.collapseActionView();
+
+        counter = 0;
+        clickMultiplier = 5;
+        comboChountDown = COMBO_BASE;
+        comboLevel = MULTIPLIER_MAXIMUM;
 
 
 
@@ -52,13 +58,26 @@ public class MainActivity extends AppCompatActivity {
     public void updateCounter() {
         int summ = clickMultiplier; // summens base er hvor mangen poeng du får i et trykk
         comboChountDown--; // ved og trykke bygger du deg kombo
+        buttonResponse(); //respons blir vist til bruker
         if (comboChountDown <= 0){ // om nedtellingen til komboen blir 0 så får man kombo bonusen som er en dobling av poengene tjent
             summ = summ * 2;
             comboChountDown = comboLevel; // så startes kombo-nedtellingen igjen
         }
-        counter = summ;
+        counter = counter + summ;
         counterDisplay.setText("Points: " + counter);
+        //tellMe();
 
+    }
+
+    private void buttonResponse(){
+
+    }
+
+    //metode til testing
+    private void tellMe(){
+        System.out.println("||||||||||||||||||" +
+                "\ncombo chountdown" + comboChountDown +
+                "\nPoints: " + counter);
     }
 
     @Override

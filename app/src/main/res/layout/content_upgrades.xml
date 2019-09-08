@@ -47,7 +47,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/clickUpgrade" />
+                app:srcCompat="@drawable/click_upgrade" />
 
             <TextView
                 android:id="@+id/clickUpgradeDescription"
@@ -96,7 +96,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/comboUpgrade" />
+                app:srcCompat="@drawable/combo_upgrade" />
 
             <TextView
                 android:id="@+id/comboUpgradeDescription"
