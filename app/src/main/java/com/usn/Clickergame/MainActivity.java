@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView counterDisplay ;
+    TextView responseDisplay;
 
     final static int COMBO_BASE = 10;
     final static int COMBO_MINIMUM = 3;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.fab);
         counterDisplay = findViewById(R.id.counterDisplay);
+        responseDisplay = findViewById(R.id.responseTextMain);
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +72,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void buttonResponse(){
+
+
+        if (comboChountDown == 0){
+            responseDisplay.setText("combo in " + comboLevel + " clicks!");
+        }
+        else if(comboChountDown == 1){
+            responseDisplay.setText("combo in " + comboChountDown + " click!");
+        }
+        else{
+            responseDisplay.setText("combo in " + comboChountDown + " clicks!");
+        }
 
     }
 
