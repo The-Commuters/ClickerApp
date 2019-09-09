@@ -173,7 +173,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/combo_Speed_upgrade" />
+                app:srcCompat="@drawable/combo_speed_upgrade" />
 
             <TextView
                 android:id="@+id/comboSpeedUpgradeDescription"

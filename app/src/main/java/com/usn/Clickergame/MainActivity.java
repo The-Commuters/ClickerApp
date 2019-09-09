@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         //toolbar.collapseActionView();
 
         counter = 0;
-        clickMultiplier = 5;
+        clickMultiplier = MULTIPLIER_BASE;
         comboChountDown = COMBO_BASE;
         comboLevel = MULTIPLIER_MAXIMUM;
 
