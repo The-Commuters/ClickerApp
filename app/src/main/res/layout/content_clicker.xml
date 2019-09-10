@@ -65,10 +65,10 @@
                 android:id="@+id/upgrade1NumberMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"<!--kilde https://stackoverflow.com/questions/2099249/aligning-textviews-on-the-left-and-right-edges-in-android-layout-->
+                android:gravity="end"
                 android:text="@string/error"
                 android:textColor="@android:color/black" />
-            android:text="4" />
+            android:text="4" /><!--kilde https://stackoverflow.com/questions/2099249/aligning-textviews-on-the-left-and-right-edges-in-android-layout-->
         </LinearLayout>
 
         <LinearLayout
