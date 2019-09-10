@@ -12,12 +12,31 @@ public class GameState {
     final static int CLICK_STRENTH_MAXIMUM = 10; // maximumen til den over
     final static int COUNTER_MINIMUM = 0;
 
+    // kostnads-variabler
+    final static int CLICK_STRENTH_COST_BASE = 10;
+    final static int COMBO_STRENGTH_COST_BASE = 80;
+    final static int COMBO_SPEED_COST_BASE = 200;
+
+    final static double CLICK_STRENTH_GROWTH_RATE = 2.2;
+    final static double COMBO_STRENGTH_GROWTH_RATE = 1.5;
+    final static double COMBO_SPEED_GROWTH_RATE = 3.0;
+
     // verdier som skal brukes på tvers av appen
     private int counter = COUNTER_MINIMUM;
     private int clickMultiplier = CLICK_STRENTH_BASE;
+
     private int comboChountDown = COMBO_BASE;
     private int comboLevel = CLICK_STRENTH_MAXIMUM;
     private int comboStrength = COMBO_STRENGTH_BASE;
+
+    public void resetGameState(){
+        counter = COUNTER_MINIMUM;
+        clickMultiplier = CLICK_STRENTH_BASE;
+
+        comboChountDown = COMBO_BASE;
+        comboLevel = CLICK_STRENTH_MAXIMUM;
+        comboStrength = COMBO_STRENGTH_BASE;
+    }
 
     public int getCounter() {
         return counter;
@@ -87,6 +106,19 @@ public class GameState {
 
     public boolean adjustComboLevel(int adjustment){
         return setComboLevel(comboLevel + adjustment);
+    }
+
+    public int getClickStrenghtCost(){
+        return (int)(CLICK_STRENTH_COST_BASE * (CLICK_STRENTH_GROWTH_RATE * clickMultiplier));
+    }
+
+    public int getComboStrenghtCost(){
+        return (int)(COMBO_STRENGTH_COST_BASE * (COMBO_STRENGTH_GROWTH_RATE * comboStrength));
+    }
+
+    public int getComboSpeedCost(){
+        double revertedValue = COMBO_BASE - comboChountDown +1; // comboen teller nedover isteden for oppover så trekk det nåværende nivå fra det egentlige +1 og du har dens nåværende "level"
+        return (int)(COMBO_SPEED_COST_BASE * (COMBO_SPEED_GROWTH_RATE * revertedValue));
     }
 
 

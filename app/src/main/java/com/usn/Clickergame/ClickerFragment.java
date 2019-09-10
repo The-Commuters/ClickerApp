@@ -17,10 +17,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ClickerFragment extends Fragment {
 
-
-
     TextView counterDisplay ;
     TextView responseDisplay;
+    TextView clickingStrengthDisplay;
+    TextView comboLengthDisplay;
+    TextView comboMultiplierDisplay;
 
     GameState game;
 
@@ -56,6 +57,11 @@ public class ClickerFragment extends Fragment {
         fab = view.findViewById(R.id.fab);
         counterDisplay = view.findViewById(R.id.counterDisplay);
         responseDisplay = view.findViewById(R.id.responseTextMain);
+        clickingStrengthDisplay = view.findViewById(R.id.upgrade1NumberMain);
+        comboLengthDisplay = view.findViewById(R.id.upgrade2NumberMain);
+        comboMultiplierDisplay = view.findViewById(R.id.upgrade3NumberMain);
+
+        updateUpgrades();
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +84,6 @@ public class ClickerFragment extends Fragment {
         }
         game.adjustCounter(summ);
         counterDisplay.setText("Points: " + game.getCounter());
-        //tellMe();
 
     }
 
@@ -95,7 +100,9 @@ public class ClickerFragment extends Fragment {
     }
 
     public void updateUpgrades(){
-
+        clickingStrengthDisplay.setText("" + game.getClickMultiplier());
+        comboLengthDisplay.setText("" + game.getComboLevel());
+        comboMultiplierDisplay.setText("" + game.getComboStrength());
     }
 
     private void buttonResponse(){
