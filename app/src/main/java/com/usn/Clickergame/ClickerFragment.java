@@ -10,16 +10,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class ClickerFragment extends Fragment {
 
+
+
     TextView counterDisplay ;
     TextView responseDisplay;
 
     GameState game;
+
+    private Data model;
 
     final static int COMBO_BASE = 10;
     final static int COMBO_MINIMUM = 3;
@@ -42,12 +47,11 @@ public class ClickerFragment extends Fragment {
     }
 
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        game = new GameState();
+
 
         fab = view.findViewById(R.id.fab);
         counterDisplay = view.findViewById(R.id.counterDisplay);
@@ -84,6 +88,8 @@ public class ClickerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+         model = ViewModelProviders.of(getActivity()).get(Data.class);
+         game = model.mGame.getValue();
 
         return inflater.inflate(R.layout.activity_clicker, container, false);
     }

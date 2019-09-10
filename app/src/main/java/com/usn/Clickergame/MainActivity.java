@@ -1,9 +1,9 @@
 package com.usn.Clickergame;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -13,9 +13,8 @@ public class MainActivity extends AppCompatActivity
 /*implements NavigationView.OnNavigationItemSelectedListener*/ {
 
     GameState game;
-    TextView counterDisplay ;
-    TextView responseDisplay;
 
+    private Data model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,12 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+        game = new GameState();
 
+
+        model = ViewModelProviders.of(this).get(Data.class);
+        model.mGame.setValue(game);
+        
 
     }
 
