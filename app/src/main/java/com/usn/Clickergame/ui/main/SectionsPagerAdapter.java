@@ -31,22 +31,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 // https://codinginflow.com/tutorials/android/tab-layout-with-fragments
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
         switch (position) {
-            case 0:
-                fragment = new ClickerFragment();
-                break;
-            case 1:
-                fragment = new UpgradesFragment();
-                break;
-            case 2:
-                fragment = new OptionsFragment();
-                break;
+            case 1: return new UpgradesFragment();
+            case 2: return new OptionsFragment();
+            default: return new ClickerFragment();
         }
-        return fragment;
     }
 
-    @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
         return mContext.getResources().getString(TAB_TITLES[position]);
