@@ -64,7 +64,7 @@ public class ClickerFragment extends Fragment {
         });
     }
 
-    /*
+/*
     @Override
     public void onResume() {
         super.onResume();
@@ -73,7 +73,9 @@ public class ClickerFragment extends Fragment {
         counterDisplay.setText("Points: " + game.getCounter());
     }
 
-     */
+ */
+
+
 
 //    @Override
 //    public void onResume(){
@@ -96,7 +98,7 @@ public class ClickerFragment extends Fragment {
         }
         game.adjustCounter(summ);
         counterDisplay.setText("Points: " + game.getCounter());
-        updateUpgrades();
+        //updateUpgrades();
 
     }
 

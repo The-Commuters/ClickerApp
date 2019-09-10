@@ -2,14 +2,14 @@ package com.usn.Clickergame;
 
 public class GameState {
 
-    // kombo-variabler
+    // kombo-konstanter
     final static int COMBO_BASE = 10; //komboen starter høgt og teller nedover, derfor er der ingen bruk for en maximum bare en minimum
     final static int COMBO_MINIMUM = 3; // hvor lavt komboen får lov til og nå
     final static int COMBO_STRENGTH_BASE = 2; // tallet man ganger med når en kombo forekommer
 
-    // clicking variabeler
+    // clicking konstanter
     final static int CLICK_STRENTH_BASE = 1; // hvor mangen poeng som blir tjent per click
-    final static int CLICK_STRENTH_MAXIMUM = 10; // maximumen til den over
+    final static int CLICK_STRENTH_MAXIMUM = 20; // maximumen til den over
     final static int COUNTER_MINIMUM = 0;
 
     // kostnads-variabler
@@ -17,6 +17,7 @@ public class GameState {
     final static int COMBO_STRENGTH_COST_BASE = 80;
     final static int COMBO_SPEED_COST_BASE = 200;
 
+    // konstanter til og regne ut kosnaden til oppgraderinger
     final static double CLICK_STRENTH_GROWTH_RATE = 1.2;
     final static double COMBO_STRENGTH_GROWTH_RATE = 0.5;
     final static double COMBO_SPEED_GROWTH_RATE = 0.3;
@@ -81,7 +82,7 @@ public class GameState {
 
     public boolean setClickMultiplier(int clickMultiplier) {
 
-        if (clickMultiplier >= CLICK_STRENTH_MAXIMUM){
+        if (clickMultiplier > CLICK_STRENTH_MAXIMUM){
             return false;
         }
         this.clickMultiplier = clickMultiplier;

@@ -31,6 +31,14 @@ public class UpgradesFragment extends Fragment {
 
     public UpgradesFragment() {
     }
+/*
+    @Override
+    public void onResume() {
+        super.onResume();
+        getUpgrades();
+    }
+
+ */
 
 
     @Override
@@ -108,7 +116,6 @@ public class UpgradesFragment extends Fragment {
 
     /*
     * to do list:
-    * ta vekk poeng når du kjøper oppgraderinger
     * ikke la knapper bli trykket på når du ikke har råd til oppgraderinger eller grå dem ut
     * vis mengen poeng tilbake i oppgradingsmenyen og trekk fra den live
     * oppdater viste oppgraderinger når spilleren returnerer til ClickerFragment
