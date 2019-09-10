@@ -33,7 +33,7 @@
                 android:id="@+id/upgrade1NameMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="clicking strength"
+                android:text="@string/clicking_strength"
                 android:textColor="@android:color/black" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="34"
+                android:text="@string/error"
                 android:textColor="@android:color/black" /><!--kilde https://stackoverflow.com/questions/2099249/aligning-textviews-on-the-left-and-right-edges-in-android-layout-->
             android:text="4" />
         </LinearLayout>
@@ -54,7 +54,7 @@
                 android:id="@+id/upgrade2NameMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="combo length"
+                android:text="@string/combo_length"
                 android:textColor="@android:color/black" />
 
             <TextView
@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="64"
+                android:text="@string/error"
                 android:textColor="@android:color/black" /><!--kilde https://stackoverflow.com/questions/2099249/aligning-textviews-on-the-left-and-right-edges-in-android-layout-->
             android:text="4820" />
         </LinearLayout>
@@ -75,7 +75,7 @@
                 android:id="@+id/upgrade3NameMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="combo multiplier"
+                android:text="@string/combo_multiplier"
                 android:textColor="@android:color/black" />
 
             <TextView
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="34"
+                android:text="@string/error"
                 android:textColor="@android:color/black" /><!--kilde https://stackoverflow.com/questions/2099249/aligning-textviews-on-the-left-and-right-edges-in-android-layout-->
             android:text="4" />
         </LinearLayout>
@@ -94,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Press the button!"
+        android:text="@string/counter_intro"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="16dp"
-        android:text="Click the red button to earn points!"
+        android:text="@string/response_intro"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.66"

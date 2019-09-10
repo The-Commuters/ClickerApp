@@ -14,4 +14,17 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_main">ClickerApp</string>
     <string name="title_activity_clicker">Clicker</string>
+    <string name="response_intro">Click the red button to earn points!</string>
+    <string name="counter_intro">Press the button!</string>
+    <string name="combo_multiplier">combo multiplier</string>
+    <string name="combo_length">combo length</string>
+    <string name="clicking_strength">clicking strength</string>
+    <string name="error">[ERROR]</string>
+    <string name="score_reset_description">Reset score to zero</string>
+    <string name="reset">Reset</string>
+    <string name="logout_description">Log out from current user</string>
+    <string name="logg_out">Logg out</string>
+    <string name="click_strength_description">increases the number of points earned eatch click of the button</string>
+    <string name="combo_strength_description">increases the bonus from getting a combo</string>
+    <string name="combo_speed_description">reduces the number of clicks needed for a combo</string>
 </resources>
