@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,12 +14,17 @@ import androidx.fragment.app.Fragment;
 
 public class OptionsFragment extends Fragment {
 
+
+
+
     public OptionsFragment() {
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
 
 
         //final Bundle bundle = new Bundle();
@@ -36,6 +42,7 @@ public class OptionsFragment extends Fragment {
             }
         });
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

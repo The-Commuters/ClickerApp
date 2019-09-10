@@ -18,25 +18,18 @@ public class ClickerFragment extends Fragment {
 
     TextView counterDisplay ;
     TextView responseDisplay;
+    TextView clickingStrengthDisplay;
+    TextView comboLengthDisplay;
+    TextView comboMultiplierDisplay;
 
     GameState game;
 
-    final static int COMBO_BASE = 10;
-    final static int COMBO_MINIMUM = 3;
-    final static int MULTIPLIER_BASE = 1;
-    final static int MULTIPLIER_MAXIMUM = 10;
-
-    // variabler som faktis blir brukt
-    int counter = 0;
-    int clickMultiplier = 1;
-    int comboChountDown = COMBO_BASE;
-    int comboLevel = MULTIPLIER_MAXIMUM;
     FloatingActionButton fab;
 
     //private fragment1.OnFragmentInteractionListener mListener;
 
 
-    // Creates a ClickerFragment Constructor
+    // lager en ClickerFragment Construktør
     public ClickerFragment() {
 
     }
@@ -52,6 +45,11 @@ public class ClickerFragment extends Fragment {
         fab = view.findViewById(R.id.fab);
         counterDisplay = view.findViewById(R.id.counterDisplay);
         responseDisplay = view.findViewById(R.id.responseTextMain);
+        clickingStrengthDisplay = view.findViewById(R.id.upgrade1NumberMain);
+        comboLengthDisplay = view.findViewById(R.id.upgrade2NumberMain);
+        comboMultiplierDisplay = view.findViewById(R.id.upgrade3NumberMain);
+
+        updateUpgrades();
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +61,7 @@ public class ClickerFragment extends Fragment {
         });
     }
 
-
+    //
     public void updateCounter() {
         int summ = game.getClickMultiplier(); // summens base er hvor mangen poeng du får i et trykk
         game.adjustComboChountDown(-1);// ved og trykke bygger du deg kombo
@@ -74,7 +72,6 @@ public class ClickerFragment extends Fragment {
         }
         game.adjustCounter(summ);
         counterDisplay.setText("Points: " + game.getCounter());
-        //tellMe();
 
     }
 
@@ -89,7 +86,9 @@ public class ClickerFragment extends Fragment {
     }
 
     public void updateUpgrades(){
-
+        clickingStrengthDisplay.setText("" + game.getClickMultiplier());
+        comboLengthDisplay.setText("" + game.getComboLevel());
+        comboMultiplierDisplay.setText("" + game.getComboStrength());
     }
 
     private void buttonResponse(){
