@@ -27,16 +27,7 @@ public class ClickerFragment extends Fragment {
 
     private Data model;
 
-    final static int COMBO_BASE = 10;
-    final static int COMBO_MINIMUM = 3;
-    final static int MULTIPLIER_BASE = 1;
-    final static int MULTIPLIER_MAXIMUM = 10;
 
-    // variabler som faktis blir brukt
-    int counter = 0;
-    int clickMultiplier = 1;
-    int comboChountDown = COMBO_BASE;
-    int comboLevel = MULTIPLIER_MAXIMUM;
     FloatingActionButton fab;
 
     //private fragment1.OnFragmentInteractionListener mListener;
@@ -73,6 +64,19 @@ public class ClickerFragment extends Fragment {
         });
     }
 
+    /*
+    @Override
+    public void onResume() {
+        super.onResume();
+        buttonResponse();
+        updateUpgrades();
+        counterDisplay.setText("Points: " + game.getCounter());
+    }
+
+     */
+
+
+
 
     public void updateCounter() {
         int summ = game.getClickMultiplier(); // summens base er hvor mangen poeng du får i et trykk
@@ -84,6 +88,7 @@ public class ClickerFragment extends Fragment {
         }
         game.adjustCounter(summ);
         counterDisplay.setText("Points: " + game.getCounter());
+        updateUpgrades();
 
     }
 

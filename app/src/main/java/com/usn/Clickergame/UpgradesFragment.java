@@ -17,12 +17,13 @@ public class UpgradesFragment extends Fragment {
     TextView clickStrenghtDisplay;
     TextView comboStrenghtDisplay;
     TextView comboSpeedDisplay;
+    TextView pointsDisplay;
 
     Button clickStrenghtButton;
     Button comboStrenghtButton;
     Button comboSpeedButton;
 
-
+//counterDisplayUpgrades bruke onRestart()
 
     private Data model;
 
@@ -47,6 +48,7 @@ public class UpgradesFragment extends Fragment {
         clickStrenghtDisplay = view.findViewById(R.id.clickUpgradeDisplay);
         comboStrenghtDisplay = view.findViewById(R.id.comboModUpgradeDesplay);
         comboSpeedDisplay = view.findViewById(R.id.comboSpeedUpgradeDesplay);
+        pointsDisplay = view.findViewById(R.id.counterDisplayUpgrades);
 
         clickStrenghtButton = view.findViewById(R.id.clickUpgradeButton);
         comboStrenghtButton = view.findViewById(R.id.comboModUpgradeButton);
@@ -55,9 +57,64 @@ public class UpgradesFragment extends Fragment {
         // i bruk for testing
 
         //cheat();
+        clickStrenghtButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (game.getCounter() < game.getClickStrenghtCost()){
+                    //
+                }
+                else{
+                    game.adjustCounter(-(game.getClickStrenghtCost()));
+                    game.adjustClickMultiplier(1);
+                }
+                getUpgrades();
+            }
+        });
+
+        comboStrenghtButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (game.getCounter() < game.getComboStrenghtCost()){
+                    //
+                }
+                else{
+                    game.adjustCounter(-(game.getComboStrenghtCost()));
+                    game.adjustComboStrenght(1);
+                }
+                getUpgrades();
+            }
+        });
+
+        comboSpeedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (game.getCounter() < game.getComboSpeedCost()){
+                    //
+                }
+                else{
+                    game.adjustCounter(-(game.getComboSpeedCost()));
+                    game.adjustComboLevel(-1);
+                }
+
+                getUpgrades();
+            }
+        });
 
         getUpgrades();
     }
+
+    /*
+    * to do list:
+    * ta vekk poeng når du kjøper oppgraderinger
+    * ikke la knapper bli trykket på når du ikke har råd til oppgraderinger eller grå dem ut
+    * vis mengen poeng tilbake i oppgradingsmenyen og trekk fra den live
+    * oppdater viste oppgraderinger når spilleren returnerer til ClickerFragment
+    * sørge for at flipping virker
+    * om vi ikke får lagra data mellom flips får det bare være
+    * */
 
 
     public void cheat(){
@@ -71,11 +128,14 @@ public class UpgradesFragment extends Fragment {
         clickStrenghtDisplay.setText("" + game.getClickMultiplier());
         comboStrenghtDisplay.setText("" + game.getComboStrength());
         comboSpeedDisplay.setText("" + game.getComboLevel());
+        pointsDisplay.setText("Points: " + game.getCounter());
 
         clickStrenghtButton.setText("" + game.getClickStrenghtCost());
         comboStrenghtButton.setText("" + game.getComboStrenghtCost());
-        comboSpeedButton.setText("" + game.getComboStrenghtCost());
+        comboSpeedButton.setText("" + game.getComboSpeedCost());
     }
+
+
 
 
 }

@@ -17,9 +17,9 @@ public class GameState {
     final static int COMBO_STRENGTH_COST_BASE = 80;
     final static int COMBO_SPEED_COST_BASE = 200;
 
-    final static double CLICK_STRENTH_GROWTH_RATE = 2.2;
-    final static double COMBO_STRENGTH_GROWTH_RATE = 1.5;
-    final static double COMBO_SPEED_GROWTH_RATE = 3.0;
+    final static double CLICK_STRENTH_GROWTH_RATE = 1.2;
+    final static double COMBO_STRENGTH_GROWTH_RATE = 0.5;
+    final static double COMBO_SPEED_GROWTH_RATE = 0.3;
 
     // verdier som skal brukes på tvers av appen
     private int counter = COUNTER_MINIMUM;
@@ -73,6 +73,10 @@ public class GameState {
 
     public boolean adjustCounter(int adjustment){
         return setCounter(counter + adjustment);
+    }
+
+    public void adjustComboStrenght(int adjustment){
+        setComboStrength((comboStrength + adjustment));
     }
 
     public boolean setClickMultiplier(int clickMultiplier) {

@@ -38,6 +38,7 @@ public class OptionsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.d("Button", "Hi from button");
+                game.resetGameState();
             }
         });
     }
