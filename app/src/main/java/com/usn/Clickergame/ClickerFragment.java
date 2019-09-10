@@ -17,6 +17,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class ClickerFragment extends Fragment {
 
     TextView counterDisplay ;
+    TextView responseDisplay;
+
+    GameState game;
 
     final static int COMBO_BASE = 10;
     final static int COMBO_MINIMUM = 3;
@@ -39,12 +42,16 @@ public class ClickerFragment extends Fragment {
     }
 
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        game = new GameState();
+
         fab = view.findViewById(R.id.fab);
         counterDisplay = view.findViewById(R.id.counterDisplay);
+        responseDisplay = view.findViewById(R.id.responseTextMain);
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -58,14 +65,16 @@ public class ClickerFragment extends Fragment {
 
 
     public void updateCounter() {
-        int summ = clickMultiplier; // summens base er hvor mangen poeng du får i et trykk
-        comboChountDown--; // ved og trykke bygger du deg kombo
-        if (comboChountDown <= 0){ // om nedtellingen til komboen blir 0 så får man kombo bonusen som er en dobling av poengene tjent
-            summ = summ * 2;
-            comboChountDown = comboLevel; // så startes kombo-nedtellingen igjen
+        int summ = game.getClickMultiplier(); // summens base er hvor mangen poeng du får i et trykk
+        game.adjustComboChountDown(-1);// ved og trykke bygger du deg kombo
+        buttonResponse(); //respons blir vist til bruker
+        if (game.getComboChountDown() <= 0){ // om nedtellingen til komboen blir 0 så får man kombo bonusen som er en ganging av poengene tjent
+            summ = summ * game.getComboStrength();
+            game.setComboChountDown(game.getComboLevel()); // så startes kombo-nedtellingen igjen
         }
-        counter = summ;
-        counterDisplay.setText("Points: " + counter);
+        game.adjustCounter(summ);
+        counterDisplay.setText("Points: " + game.getCounter());
+        //tellMe();
 
     }
 
@@ -77,6 +86,25 @@ public class ClickerFragment extends Fragment {
 
 
         return inflater.inflate(R.layout.activity_clicker, container, false);
+    }
+
+    public void updateUpgrades(){
+
+    }
+
+    private void buttonResponse(){
+
+
+        if (game.getComboChountDown() == 0){
+            responseDisplay.setText("you earned " + (game.getComboStrength() * game.getClickMultiplier()) + " extra points!");
+        }
+        else if(game.getComboChountDown() == 1){
+            responseDisplay.setText("combo in " + game.getComboChountDown() + " click!");
+        }
+        else{
+            responseDisplay.setText("combo in " + game.getComboChountDown() + " clicks!");
+        }
+
     }
 
     public interface OnFragmentInteractionListener {
