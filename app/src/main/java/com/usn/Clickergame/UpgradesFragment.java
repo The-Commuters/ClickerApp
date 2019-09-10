@@ -1,21 +1,16 @@
 package com.usn.Clickergame;
 
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 public class UpgradesFragment extends Fragment {
 
@@ -27,7 +22,11 @@ public class UpgradesFragment extends Fragment {
     Button comboStrenghtButton;
     Button comboSpeedButton;
 
-    GameState game2; // temp løsning til vi får sent data
+
+
+    private Data model;
+
+    GameState game;
 
     public UpgradesFragment() {
     }
@@ -35,6 +34,10 @@ public class UpgradesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        model = ViewModelProviders.of(getActivity()).get(Data.class);
+        game = model.mGame.getValue();
+
         return inflater.inflate(R.layout.activity_upgrades, container, false);
     }
 
@@ -50,27 +53,28 @@ public class UpgradesFragment extends Fragment {
         comboSpeedButton = view.findViewById(R.id.comboSpeedUpgradeButton);
 
         // i bruk for testing
-        game2 = new GameState();
-        cheat();
+
+        //cheat();
 
         getUpgrades();
     }
 
 
     public void cheat(){
-        game2.setComboStrength(4);
-        game2.setComboLevel(5);
-        game2.setClickMultiplier(7);
+        game.setCounter(500);
+        game.setComboStrength(4);
+        game.setComboLevel(5);
+        game.setClickMultiplier(7);
     }
 
     public void getUpgrades(){
-        clickStrenghtDisplay.setText("" + game2.getClickMultiplier());
-        comboStrenghtDisplay.setText("" + game2.getComboStrength());
-        comboSpeedDisplay.setText("" + game2.getComboLevel());
+        clickStrenghtDisplay.setText("" + game.getClickMultiplier());
+        comboStrenghtDisplay.setText("" + game.getComboStrength());
+        comboSpeedDisplay.setText("" + game.getComboLevel());
 
-        clickStrenghtButton.setText("" + game2.getClickStrenghtCost());
-        comboStrenghtButton.setText("" + game2.getComboStrenghtCost());
-        comboSpeedButton.setText("" + game2.getComboStrenghtCost());
+        clickStrenghtButton.setText("" + game.getClickStrenghtCost());
+        comboStrenghtButton.setText("" + game.getComboStrenghtCost());
+        comboSpeedButton.setText("" + game.getComboStrenghtCost());
     }
 
 
