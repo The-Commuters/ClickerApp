@@ -75,6 +75,14 @@ public class ClickerFragment extends Fragment {
 
      */
 
+//    @Override
+//    public void onResume(){
+//        super.onResume();
+//        game = model.mGame.getValue();
+//        counterDisplay.setText("hii");
+//    }
+
+
 
 
 
