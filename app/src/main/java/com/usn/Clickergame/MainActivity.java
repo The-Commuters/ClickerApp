@@ -1,47 +1,27 @@
 package com.usn.Clickergame;
 
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+/*implements NavigationView.OnNavigationItemSelectedListener*/ {
 
+    GameState game;
     TextView counterDisplay ;
     TextView responseDisplay;
 
-    final static int COMBO_BASE = 10;
-    final static int COMBO_MINIMUM = 3;
-    final static int COMBO_POWER_BASE = 2;
-    final static int MULTIPLIER_BASE = 1;
-    final static int MULTIPLIER_MAXIMUM = 10;
-
-    // variabler som faktis blir brukt
-    int counter;
-    int clickMultiplier;
-    int comboChountDown;
-    int comboLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        //toolbar.collapseActionView();
 
-        counter = 0;
-        clickMultiplier = MULTIPLIER_BASE;
-        comboChountDown = COMBO_BASE;
-        comboLevel = MULTIPLIER_MAXIMUM;
-
-
+        game = new GameState();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         counterDisplay = findViewById(R.id.counterDisplay);
@@ -55,63 +35,48 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     public void updateCounter() {
-        int summ = clickMultiplier; // summens base er hvor mangen poeng du får i et trykk
-        comboChountDown--; // ved og trykke bygger du deg kombo
+        int summ = game.getClickMultiplier(); // summens base er hvor mangen poeng du får i et trykk
+        game.adjustComboChountDown(-1);// ved og trykke bygger du deg kombo
         buttonResponse(); //respons blir vist til bruker
-        if (comboChountDown <= 0){ // om nedtellingen til komboen blir 0 så får man kombo bonusen som er en dobling av poengene tjent
-            summ = summ * 2;
-            comboChountDown = comboLevel; // så startes kombo-nedtellingen igjen
+        if (game.getComboChountDown() <= 0){ // om nedtellingen til komboen blir 0 så får man kombo bonusen som er en ganging av poengene tjent
+            summ = summ * game.getComboStrength();
+            game.setComboChountDown(game.getComboLevel()); // så startes kombo-nedtellingen igjen
         }
-        counter = counter + summ;
-        counterDisplay.setText("Points: " + counter);
+        game.adjustCounter(summ);
+        counterDisplay.setText("Points: " + game.getCounter());
         //tellMe();
+
+    }
+
+    public void updateUpgrades(){
 
     }
 
     private void buttonResponse(){
 
 
-        if (comboChountDown == 0){
-            responseDisplay.setText("combo in " + comboLevel + " clicks!");
+        if (game.getComboChountDown() == 0){
+            responseDisplay.setText("you earned " + (game.getComboStrength() * game.getClickMultiplier()) + " extra points!");
         }
-        else if(comboChountDown == 1){
-            responseDisplay.setText("combo in " + comboChountDown + " click!");
+        else if(game.getComboChountDown() == 1){
+            responseDisplay.setText("combo in " + game.getComboChountDown() + " click!");
         }
         else{
-            responseDisplay.setText("combo in " + comboChountDown + " clicks!");
+            responseDisplay.setText("combo in " + game.getComboChountDown() + " clicks!");
         }
 
     }
 
-    //metode til testing
-    private void tellMe(){
-        System.out.println("||||||||||||||||||" +
-                "\ncombo chountdown" + comboChountDown +
-                "\nPoints: " + counter);
-    }
-
+/*
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
     }
+*/
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
