@@ -2,16 +2,14 @@ package com.usn.Clickergame;
 
 import android.content.Context;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.usn.Clickergame.ClickerFragment;
-import com.usn.Clickergame.OptionsFragment;
-import com.usn.Clickergame.R;
-import com.usn.Clickergame.UpgradesFragment;
+import com.usn.Clickergame.ui.clicker.fragments.ClickerFragment;
+import com.usn.Clickergame.ui.options.OptionsFragment;
+import com.usn.Clickergame.ui.clicker.fragments.UpgradesFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

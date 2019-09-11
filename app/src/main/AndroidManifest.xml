@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".OptionsFragment"
+            android:name=".ui.options.OptionsFragment"
             android:label="@string/title_activity_options"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".UpgradesFragment"
+            android:name=".ui.clicker.fragments.UpgradesFragment"
             android:label="@string/title_activity_upgrades"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

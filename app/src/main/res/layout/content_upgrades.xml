@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".UpgradesFragment"
+    tools:context=".ui.clicker.fragments.UpgradesFragment"
     tools:showIn="@layout/activity_upgrades">
 
     <LinearLayout
@@ -50,7 +50,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/click_upgrade" />
+                app:srcCompat="@drawable/upgrade_click" />
 
             <TextView
                 android:id="@+id/clickUpgradeDescription"
@@ -113,7 +113,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/combo_upgrade" />
+                app:srcCompat="@drawable/upgrade_combo" />
             app:srcCompat="@drawable/combo_upgrade" />
 
             <TextView
@@ -177,7 +177,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/combo_speed_upgrade" />
+                app:srcCompat="@drawable/upgrade_combo_speed" />
 
             <TextView
                 android:id="@+id/comboSpeedUpgradeDescription"
@@ -220,19 +220,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <!--
-     android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Press the button!"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-
-     -->
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,8 @@
-package com.usn.Clickergame;
+package com.usn.Clickergame.ui.clicker.fragments;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,29 +14,50 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.usn.Clickergame.Data;
+import com.usn.Clickergame.GameState;
+import com.usn.Clickergame.R;
+import com.usn.Clickergame.ui.clicker.SharedViewModel;
 
 
 public class ClickerFragment extends Fragment {
 
-    TextView counterDisplay ;
-    TextView responseDisplay;
-    TextView clickingStrengthDisplay;
-    TextView comboLengthDisplay;
-    TextView comboMultiplierDisplay;
+    // david
+    private SharedViewModel model;
+    // david
 
-    GameState game;
+    // TODO refactor with data binding
+    private TextView counterDisplay ;
+    private TextView responseDisplay;
+    private TextView clickingStrengthDisplay;
+    private TextView comboLengthDisplay;
+    private TextView comboMultiplierDisplay;
+    private GameState game;
 
-    private Data model;
-
-
+    // TODO should not be fab
     FloatingActionButton fab;
 
-    //private fragment1.OnFragmentInteractionListener mListener;
+    public ClickerFragment() {}
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
-    // Creates a ClickerFragment Constructor
-    public ClickerFragment() {
+    @Override
+    public View onCreateView(
+            LayoutInflater inflater,
+            ViewGroup container,
+            Bundle savedInstanceState
+    ){
+        // david
+        model = ViewModelProviders.of(this).get(SharedViewModel.class);
+        // david
 
+        Data model = ViewModelProviders.of(getActivity()).get(Data.class);
+        game = model.mGame.getValue();
+
+        return inflater.inflate(R.layout.activity_clicker, container, false);
     }
 
 
@@ -43,8 +65,7 @@ public class ClickerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
+        // TODO refactor with data binding
         fab = view.findViewById(R.id.fab);
         counterDisplay = view.findViewById(R.id.counterDisplay);
         responseDisplay = view.findViewById(R.id.responseTextMain);
@@ -64,30 +85,6 @@ public class ClickerFragment extends Fragment {
         });
     }
 
-/*
-    @Override
-    public void onResume() {
-        super.onResume();
-        buttonResponse();
-        updateUpgrades();
-        counterDisplay.setText("Points: " + game.getCounter());
-    }
-
- */
-
-
-
-//    @Override
-//    public void onResume(){
-//        super.onResume();
-//        game = model.mGame.getValue();
-//        counterDisplay.setText("hii");
-//    }
-
-
-
-
-
     public void updateCounter() {
         int summ = game.getClickMultiplier(); // summens base er hvor mangen poeng du får i et trykk
         game.adjustComboChountDown(-1);// ved og trykke bygger du deg kombo
@@ -102,17 +99,6 @@ public class ClickerFragment extends Fragment {
 
     }
 
-
-    // Overrides the onCreateView and inflates the fragment to the size of the screen
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-         model = ViewModelProviders.of(getActivity()).get(Data.class);
-         game = model.mGame.getValue();
-
-        return inflater.inflate(R.layout.activity_clicker, container, false);
-    }
 
     public void updateUpgrades(){
         clickingStrengthDisplay.setText("" + game.getClickMultiplier());

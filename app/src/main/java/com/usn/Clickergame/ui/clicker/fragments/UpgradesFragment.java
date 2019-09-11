@@ -1,4 +1,4 @@
-package com.usn.Clickergame;
+package com.usn.Clickergame.ui.clicker.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,8 +12,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.usn.Clickergame.Data;
+import com.usn.Clickergame.GameState;
+import com.usn.Clickergame.R;
+import com.usn.Clickergame.ui.clicker.SharedViewModel;
+
 public class UpgradesFragment extends Fragment {
 
+    // david
+    private SharedViewModel modela;
+    // david
+
+    // TODO refactor with data binding
     TextView clickStrenghtDisplay;
     TextView comboStrenghtDisplay;
     TextView comboSpeedDisplay;
@@ -29,28 +39,26 @@ public class UpgradesFragment extends Fragment {
 
     GameState game;
 
-    public UpgradesFragment() {
-    }
-/*
-    @Override
-    public void onResume() {
-        super.onResume();
-        getUpgrades();
-    }
-
- */
-
+    public UpgradesFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
+    @Override
+    public View onCreateView(
+            LayoutInflater inflater,
+            ViewGroup container,
+            Bundle savedInstanceState
+    ) {
         model = ViewModelProviders.of(getActivity()).get(Data.class);
         game = model.mGame.getValue();
-
         return inflater.inflate(R.layout.activity_upgrades, container, false);
     }
 
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         clickStrenghtDisplay = view.findViewById(R.id.clickUpgradeDisplay);
@@ -62,9 +70,6 @@ public class UpgradesFragment extends Fragment {
         comboStrenghtButton = view.findViewById(R.id.comboModUpgradeButton);
         comboSpeedButton = view.findViewById(R.id.comboSpeedUpgradeButton);
 
-        // i bruk for testing
-
-        //cheat();
         clickStrenghtButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,14 +128,6 @@ public class UpgradesFragment extends Fragment {
     * om vi ikke får lagra data mellom flips får det bare være
     * */
 
-
-    public void cheat(){
-        game.setCounter(500);
-        game.setComboStrength(4);
-        game.setComboLevel(5);
-        game.setClickMultiplier(7);
-    }
-
     public void getUpgrades(){
         clickStrenghtDisplay.setText("" + game.getClickMultiplier());
         comboStrenghtDisplay.setText("" + game.getComboStrength());
@@ -141,8 +138,4 @@ public class UpgradesFragment extends Fragment {
         comboStrenghtButton.setText("" + game.getComboStrenghtCost());
         comboSpeedButton.setText("" + game.getComboSpeedCost());
     }
-
-
-
-
 }
