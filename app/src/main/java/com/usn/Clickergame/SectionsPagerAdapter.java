@@ -1,4 +1,4 @@
-package com.usn.Clickergame.ui.main;
+package com.usn.Clickergame;
 
 import android.content.Context;
 

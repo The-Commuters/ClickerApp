@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.usn.Clickergame.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity
 /*implements NavigationView.OnNavigationItemSelectedListener*/ {
