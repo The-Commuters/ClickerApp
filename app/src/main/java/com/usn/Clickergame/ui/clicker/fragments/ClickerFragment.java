@@ -21,10 +21,7 @@ import com.usn.Clickergame.ui.clicker.SharedViewModel;
 
 
 public class ClickerFragment extends Fragment {
-
-    // david
     private SharedViewModel model;
-    // david
 
     // TODO refactor with data binding
     private TextView counterDisplay ;
@@ -34,7 +31,7 @@ public class ClickerFragment extends Fragment {
     private TextView comboMultiplierDisplay;
     private GameState game;
 
-    // TODO should not be fab
+    // TODO should not be a fab
     FloatingActionButton fab;
 
     public ClickerFragment() {}
