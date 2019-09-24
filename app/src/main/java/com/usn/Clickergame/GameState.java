@@ -1,6 +1,10 @@
 package com.usn.Clickergame;
 
-public class GameState {
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
+public class GameState extends BaseObservable {
+
 
     // kombo-konstanter
     final static int COMBO_BASE = 10; //komboen starter høgt og teller nedover, derfor er der ingen bruk for en maximum bare en minimum
@@ -30,6 +34,12 @@ public class GameState {
     private int comboLevel = CLICK_STRENTH_MAXIMUM;
     private int comboStrength = COMBO_STRENGTH_BASE;
 
+    public GameState(int counter){
+        this.counter = counter;
+
+    }
+
+
     public void resetGameState(){
         counter = COUNTER_MINIMUM;
         clickMultiplier = CLICK_STRENTH_BASE;
@@ -39,6 +49,7 @@ public class GameState {
         comboStrength = COMBO_STRENGTH_BASE;
     }
 
+    @Bindable
     public int getCounter() {
         return counter;
     }
@@ -63,10 +74,12 @@ public class GameState {
         this.comboStrength = comboStrength;
     }
 
+
     public boolean setCounter(int counter) {
 
         if (counter >= 1000000000){ // hindrer overtredning av int sin grense
             return false;
+
         }
         this.counter = counter;
         return true;

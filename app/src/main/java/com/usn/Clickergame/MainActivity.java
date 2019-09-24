@@ -3,10 +3,13 @@ package com.usn.Clickergame;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.SavedStateVMFactory;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+
+
 
 public class MainActivity extends AppCompatActivity
 /*implements NavigationView.OnNavigationItemSelectedListener*/ {
@@ -24,7 +27,17 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        game = new GameState();
+        game = new GameState(1);
+
+        //ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        //ActivityClickerBinding bindingClicker = DataBindingUtil.setContentView(this, R.layout.activity_clicker);
+
+        //binding.setLifecycleOwner(this);
+
+
+
+
+
 
 
         model = ViewModelProviders.of(this).get(Data.class);
@@ -33,6 +46,8 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
+
 /*
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -40,4 +55,4 @@ public class MainActivity extends AppCompatActivity
     }
 */
 
-}
+

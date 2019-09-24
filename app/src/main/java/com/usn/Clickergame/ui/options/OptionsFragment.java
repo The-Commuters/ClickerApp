@@ -51,7 +51,7 @@ public class OptionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         model = ViewModelProviders.of(getActivity()).get(Data.class);
-        game = model.mGame.getValue();
+        //game = model.getGame().getValue();
 
         return inflater.inflate(R.layout.activity_options, container, false);
 
