@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 public class Data extends ViewModel {
      private MutableLiveData<GameState> mGame = new MutableLiveData<>();
      public LiveData<Integer> mPoints ;
+    public MutableLiveData<GameState> mGame = new MutableLiveData<>();
 
     private static final String NAME_KEY = "game";
     private SavedStateHandle mState;
