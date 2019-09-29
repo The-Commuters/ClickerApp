@@ -4,33 +4,36 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.SavedStateVMFactory;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.usn.Clickergame.Data;
-import com.usn.Clickergame.GameState;
-import com.usn.Clickergame.R;
+import com.usn.clickergame.Data;
+import com.usn.clickergame.GameState;
+import com.usn.clickergame.databinding.ContentClickerBinding;
 
 
 public class ClickerFragment extends Fragment {
-    private Data model;
+    GameState game ;
+
+    Data model;
+
+    ContentClickerBinding bindingClicker;
+
 
     // TODO refactor with data binding
-    private TextView counterDisplay ;
+  /*  private TextView counterDisplay ;
     private TextView responseDisplay;
     private TextView clickingStrengthDisplay;
     private TextView comboLengthDisplay;
-    private TextView comboMultiplierDisplay;
-    private GameState game;
+    private TextView comboMultiplierDisplay;*/
+    //private GameState game = new GameState(1);
 
     // TODO should not be a fab
-    FloatingActionButton fab;
+    // FloatingActionButton fab;
+
 
     public ClickerFragment() {
 
@@ -48,55 +51,29 @@ public class ClickerFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
+    public void onDestroy() {
+        super.onDestroy();
+        model.mGame.postValue(game);
+        Log.d("Frag", "I was killed");
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
 
-        model = ViewModelProviders.of(this, new SavedStateVMFactory(this)).get(Data.class);
-        //game =  model.getGame().getValue();
 
-       // model.saveGame(game);
-
-
-       /* model.getGame().observe(this, new Observer<GameState>() {
-            @Override
-            public void onChanged(GameState gameState) {
-                counterDisplay.setText(gameState.getCounter());
-            }
-        });*/
-
-
-
-        /*LiveData<GameState> gamePointsLiveDataListener = new LiveData<GameState>() {
-            @Override
-            public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<? super Integer> observer) {
-                super.observe(owner, observer);
-            }
-        };
-        gamePointsLiveDataListener.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                counterDisplay.setText(game.getCounter());
-            }
-
-          *//*  @Override
-                    public void onChanged(GameState game) {
-
-                    }*//*
-                }
+        model = ViewModelProviders.of(getActivity()).get(Data.class);
+        game = model.mGame.getValue();
 
         );
 
+        bindingClicker.setGameState(game);
 
-          /*  @Override
-            public void onChanged(int counter) {
-
-               //counterDisplay.setText(game.getCounter());
-                Log.d("hi", "I was created");
-            }
-                */
 
     }
+
 
     @Override
     public View onCreateView(
@@ -104,64 +81,78 @@ public class ClickerFragment extends Fragment {
             ViewGroup container,
             Bundle savedInstanceState
     ){
-        // david
-        //model = ViewModelProviders.of(this).get(Data.class);
-        // david
+
+
+        //ActivityClickerBinding bindingClicker = ActivityClickerBinding.inflate(inflater, container, false);
+        bindingClicker = ContentClickerBinding.inflate(inflater, container, false);
+
+        View root = bindingClicker.getRoot();
+        bindingClicker.getLifecycleOwner();
+
+
+        bindingClicker.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
 
 
-        //game =
+                updateCounter();
+                Log.d("hi" ,"hi " + game.getCounter() );
 
-        return inflater.inflate(R.layout.activity_clicker, container, false);
+
+
+            }
+        });
+
+
+        return root;
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         // TODO refactor with data binding
-        fab = view.findViewById(R.id.fab);
+       /* fab = view.findViewById(R.id.fab);
         counterDisplay = view.findViewById(R.id.counterDisplay);
         responseDisplay = view.findViewById(R.id.responseTextMain);
         clickingStrengthDisplay = view.findViewById(R.id.upgrade1NumberMain);
         comboLengthDisplay = view.findViewById(R.id.upgrade2NumberMain);
-        comboMultiplierDisplay = view.findViewById(R.id.upgrade3NumberMain);
+        comboMultiplierDisplay = view.findViewById(R.id.upgrade3NumberMain);*/
+
 
         //updateUpgrades();
 
 
-
-        fab.setOnClickListener(new View.OnClickListener() {
+       /* fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //Log.d("hi" ,"hi " + model.getGame() );
+                //Log.d("test" , "" + );
+                Log.d("hi" ,"hi " + game.getCounter() );
 
                 updateCounter();
 
             }
-        });
+        });*/
     }
 
 
     public void updateCounter() {
-       /* int summ = game.getClickMultiplier(); // summens base er hvor mangen poeng du får i et trykk
+
+        int summ = game.getClickMultiplier(); // summens base er hvor mangen poeng du får i et trykk
         game.adjustComboChountDown(-1);// ved og trykke bygger du deg kombo
-        buttonResponse(); //respons blir vist til bruker
+        //buttonResponse(); //respons blir vist til bruker
         if (game.getComboChountDown() <= 0){ // om nedtellingen til komboen blir 0 så får man kombo bonusen som er en ganging av poengene tjent
             summ = summ * game.getComboStrength();
-            game.setComboChountDown(game.getComboLevel()); // så startes kombo-nedtellingen igjen
+            game.setComboChountDown(game.getComboLength()); // så startes kombo-nedtellingen igjen
         }
-        game.adjustCounter(summ);*/
+        game.adjustCounter(summ);
+
+        buttonResponse();
 
 
-        //game.setCounter(1);
-        //game.setCounter(2);
-        //model.saveGame(game);
-
-       //model.mPoints.setValue(game.getCounter());
-        //counterDisplay.setText("Points:" + game.getCounter());
+        //counterDisplay.setText("Points:" + game.getCounter() );
         //updateUpgrades();
 
     }
@@ -170,7 +161,7 @@ public class ClickerFragment extends Fragment {
 /*
     public void updateUpgrades(){
         clickingStrengthDisplay.setText("" + game.getClickMultiplier());
-        comboLengthDisplay.setText("" + game.getComboLevel());
+        comboLengthDisplay.setText("" + game.getComboLength());
         comboMultiplierDisplay.setText("" + game.getComboStrength());
     }*/
 
@@ -178,13 +169,13 @@ public class ClickerFragment extends Fragment {
 
 
         if (game.getComboChountDown() == 0){
-            responseDisplay.setText("you earned " + (game.getComboStrength() * game.getClickMultiplier()) + " extra points!");
+            bindingClicker.responseTextMain.setText("you earned " + (game.getComboStrength() * game.getClickMultiplier()) + " extra points!");
         }
         else if(game.getComboChountDown() == 1){
-            responseDisplay.setText("combo in " + game.getComboChountDown() + " click!");
+            bindingClicker.responseTextMain.setText("combo in " + game.getComboChountDown() + " click!");
         }
         else{
-            responseDisplay.setText("combo in " + game.getComboChountDown() + " clicks!");
+            bindingClicker.responseTextMain.setText("combo in " + game.getComboChountDown() + " clicks!");
         }
 
     }
@@ -194,6 +185,6 @@ public class ClickerFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }*/
 
-    }
+}
 
 
