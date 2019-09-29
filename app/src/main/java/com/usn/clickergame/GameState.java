@@ -38,7 +38,8 @@ public class GameState extends BaseObservable {
     private int comboLength = COMBO_BASE;
     private int comboStrength = COMBO_STRENGTH_BASE;
 
-    public GameState(int counter){
+    public GameState(int counter) {
+
         this.counter = counter;
     }
 
