@@ -31,7 +31,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 1: return UpgradesFragment.newInstance();
-            case 2: return new OptionsFragment();
+            case 2: return OptionsFragment.newInstance();
             default: return ClickerFragment.newInstance();
         }
     }

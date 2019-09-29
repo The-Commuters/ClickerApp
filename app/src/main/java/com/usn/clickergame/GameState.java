@@ -48,7 +48,7 @@ public class GameState extends BaseObservable {
         clickMultiplier = CLICK_STRENTH_BASE;
 
         comboChountDown = COMBO_BASE;
-        comboLength = CLICK_STRENTH_MAXIMUM;
+        comboLength = COMBO_BASE;
         comboStrength = COMBO_STRENGTH_BASE;
     }
 

@@ -12,10 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-;
 import com.usn.clickergame.Data;
 import com.usn.clickergame.GameState;
 import com.usn.clickergame.R;
+import com.usn.clickergame.databinding.ContentOptionsBinding;
 
 public class OptionsFragment extends Fragment {
 
@@ -23,7 +23,42 @@ public class OptionsFragment extends Fragment {
 
     private Data model;
 
+    ContentOptionsBinding bindingOptions;
+
     public OptionsFragment() {
+
+    }
+
+    public static OptionsFragment newInstance(){
+        return new OptionsFragment();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        model.mGame.setValue(game);
+        Log.d("Frag" , "I was killed");
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
+
+        model = ViewModelProviders.of(getActivity()).get(Data.class);
+        game = model.mGame.getValue();
+
+        bindingOptions.setGameState(game);
+
+
     }
 
     @Override
@@ -39,11 +74,15 @@ public class OptionsFragment extends Fragment {
 
         final Button button = view.findViewById(R.id.optionsResetButton);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        bindingOptions.optionsResetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("Button", "Hi from button");
                 game.resetGameState();
+
+                bindingOptions.setGameState(game);
+                model.mGame.postValue(game);
+
             }
         });
     }
@@ -51,10 +90,16 @@ public class OptionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        model = ViewModelProviders.of(getActivity()).get(Data.class);
+        //model = ViewModelProviders.of(getActivity()).get(Data.class);
         //game = model.getGame().getValue();
 
-        return inflater.inflate(R.layout.activity_options, container, false);
+        //ActivityClickerBinding bindingClicker = ActivityClickerBinding.inflate(inflater, container, false);
+        bindingOptions = ContentOptionsBinding.inflate(inflater, container, false);
+
+        View root = bindingOptions.getRoot();
+
+
+        return root;
 
     }
 
