@@ -4,21 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.usn.Clickergame.Data;
-import com.usn.Clickergame.GameState;
-import com.usn.Clickergame.R;
-import com.usn.Clickergame.ui.clicker.SharedViewModel;
+import com.usn.clickergame.Data;
+import com.usn.clickergame.GameState;
+import com.usn.clickergame.databinding.ContentUpgradesBinding;
 
 public class UpgradesFragment extends Fragment {
 
     // david
-    private SharedViewModel modela;
+    /*private SharedViewModel modela;
     // david
 
     // TODO refactor with data binding
@@ -29,19 +27,41 @@ public class UpgradesFragment extends Fragment {
 
     Button clickStrenghtButton;
     Button comboStrenghtButton;
-    Button comboSpeedButton;
+    Button comboSpeedButton;*/
 
-//counterDisplayUpgrades bruke onRestart()
-
-    private Data model;
+    //counterDisplayUpgrades bruke onRestart()
+    Data model;
 
     GameState game;
 
-    public UpgradesFragment() {}
+    ContentUpgradesBinding bindingUpgrades;
+
+    public static UpgradesFragment newInstance(){
+        return new UpgradesFragment();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        model.mGame.postValue(game);
+        Log.d("Frag", "I was killed");
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
+        model = ViewModelProviders.of(getActivity()).get(Data.class);
+        game = model.mGame.getValue();
+
+        bindingUpgrades.setGameState(game);
+
     }
 
     @Override
@@ -50,16 +70,23 @@ public class UpgradesFragment extends Fragment {
             ViewGroup container,
             Bundle savedInstanceState
     ) {
-        model = ViewModelProviders.of(getActivity()).get(Data.class);
-        //game = model.mGame.getValue();
-        return inflater.inflate(R.layout.activity_upgrades, container, false);
+
+
+        bindingUpgrades = ContentUpgradesBinding.inflate(inflater, container, false);
+
+        View root = bindingUpgrades.getRoot();
+
+
+
+
+        return root;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        clickStrenghtDisplay = view.findViewById(R.id.clickUpgradeDisplay);
+       /* clickStrenghtDisplay = view.findViewById(R.id.clickUpgradeDisplay);
         comboStrenghtDisplay = view.findViewById(R.id.comboModUpgradeDesplay);
         comboSpeedDisplay = view.findViewById(R.id.comboSpeedUpgradeDesplay);
         pointsDisplay = view.findViewById(R.id.counterDisplayUpgrades);
@@ -68,7 +95,10 @@ public class UpgradesFragment extends Fragment {
         comboStrenghtButton = view.findViewById(R.id.comboModUpgradeButton);
         comboSpeedButton = view.findViewById(R.id.comboSpeedUpgradeButton);
 
-        clickStrenghtButton.setOnClickListener(new View.OnClickListener() {
+
+
+        */
+        bindingUpgrades.clickUpgradeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -83,7 +113,7 @@ public class UpgradesFragment extends Fragment {
             }
         });
 
-        comboStrenghtButton.setOnClickListener(new View.OnClickListener() {
+        bindingUpgrades.comboModUpgradeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -98,7 +128,7 @@ public class UpgradesFragment extends Fragment {
             }
         });
 
-        comboSpeedButton.setOnClickListener(new View.OnClickListener() {
+        bindingUpgrades.comboSpeedUpgradeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -110,7 +140,7 @@ public class UpgradesFragment extends Fragment {
                     game.adjustComboLevel(-1);
                 }
 
-                ///getUpgrades();
+                //getUpgrades();
             }
         });
 
@@ -118,22 +148,23 @@ public class UpgradesFragment extends Fragment {
     }
 
     /*
-    * to do list:
-    * ikke la knapper bli trykket på når du ikke har råd til oppgraderinger eller grå dem ut
-    * vis mengen poeng tilbake i oppgradingsmenyen og trekk fra den live
-    * oppdater viste oppgraderinger når spilleren returnerer til ClickerFragment
-    * sørge for at flipping virker
-    * om vi ikke får lagra data mellom flips får det bare være
-    * */
-/*
-    public void getUpgrades(){
-        clickStrenghtDisplay.setText("" + game.getClickMultiplier());
-        comboStrenghtDisplay.setText("" + game.getComboStrength());
-        comboSpeedDisplay.setText("" + game.getComboLevel());
-        pointsDisplay.setText("Points: " + game.getCounter());
+     * to do list:
+     * ikke la knapper bli trykket på når du ikke har råd til oppgraderinger eller grå dem ut
+     * vis mengen poeng tilbake i oppgradingsmenyen og trekk fra den live
+     * oppdater viste oppgraderinger når spilleren returnerer til ClickerFragment
+     * sørge for at flipping virker
+     * om vi ikke får lagra data mellom flips får det bare være
+     * */
 
-        clickStrenghtButton.setText("" + game.getClickStrenghtCost());
-        comboStrenghtButton.setText("" + game.getComboStrenghtCost());
-        comboSpeedButton.setText("" + game.getComboSpeedCost());
-    }*/
+    public void getUpgrades(){
+
+
+        bindingUpgrades.clickUpgradeButton.setText("" + game.getClickStrenghtCost());
+        bindingUpgrades.comboModUpgradeButton.setText("" + game.getComboStrenghtCost());
+        bindingUpgrades.comboSpeedUpgradeButton.setText("" + game.getComboSpeedCost());
+    }
+
 }
+
+
+
