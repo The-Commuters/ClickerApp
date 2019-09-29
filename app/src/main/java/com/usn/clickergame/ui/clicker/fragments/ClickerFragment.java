@@ -32,7 +32,13 @@ public class ClickerFragment extends Fragment {
     // TODO should not be a fab
     FloatingActionButton fab;
 
-    public ClickerFragment() {}
+    public ClickerFragment() {
+
+    }
+
+    public static ClickerFragment newInstance(){
+        return new ClickerFragment();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
