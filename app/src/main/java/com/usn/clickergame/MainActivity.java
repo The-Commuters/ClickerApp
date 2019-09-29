@@ -1,4 +1,4 @@
-package com.usn.Clickergame;
+package com.usn.clickergame;
 
 import android.os.Bundle;
 

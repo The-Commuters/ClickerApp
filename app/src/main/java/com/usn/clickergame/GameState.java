@@ -1,4 +1,5 @@
-package com.usn.Clickergame;
+package com.usn.clickergame;
+
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;

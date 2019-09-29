@@ -1,8 +1,9 @@
-package com.usn.Clickergame;
+package com.usn.clickergame;
+
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 public class Data extends ViewModel {

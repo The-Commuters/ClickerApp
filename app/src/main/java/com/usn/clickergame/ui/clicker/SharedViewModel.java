@@ -1,4 +1,4 @@
-package com.usn.Clickergame.ui.clicker;
+package com.usn.clickergame.ui.clicker;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

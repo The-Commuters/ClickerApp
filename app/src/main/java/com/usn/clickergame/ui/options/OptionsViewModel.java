@@ -1,4 +1,4 @@
-package com.usn.Clickergame.ui.options;
+package com.usn.clickergame.ui.options;
 
 import androidx.lifecycle.ViewModel;
 

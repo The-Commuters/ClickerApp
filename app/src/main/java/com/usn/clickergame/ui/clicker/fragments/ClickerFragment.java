@@ -1,4 +1,4 @@
-package com.usn.Clickergame.ui.clicker.fragments;
+package com.usn.clickergame.ui.clicker.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
