@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.usn.Clickergame">
+    package="com.usn.clickergame">
 
     <application
         android:allowBackup="true"
@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.options.OptionsFragment"
+            android:name="com.usn.clickergame.ui.options.OptionsFragment"
             android:label="@string/title_activity_options"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.clicker.fragments.UpgradesFragment"
+            android:name="com.usn.clickergame.ui.clicker.fragments.UpgradesFragment"
             android:label="@string/title_activity_upgrades"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
