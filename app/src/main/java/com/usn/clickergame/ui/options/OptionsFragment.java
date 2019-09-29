@@ -12,9 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.usn.Clickergame.Data;
-import com.usn.Clickergame.GameState;
-import com.usn.Clickergame.R;
+;
+import com.usn.clickergame.Data;
+import com.usn.clickergame.GameState;
+import com.usn.clickergame.R;
 
 public class OptionsFragment extends Fragment {
 

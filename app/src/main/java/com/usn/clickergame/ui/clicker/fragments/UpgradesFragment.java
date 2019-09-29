@@ -1,6 +1,7 @@
 package com.usn.clickergame.ui.clicker.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
