@@ -27,25 +27,20 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+
+        model = ViewModelProviders.of(this).get(com.usn.clickergame.Data.class);
+
         game = new GameState(1);
 
+        model.mGame.postValue(game);
+
         //ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        //ActivityClickerBinding bindingClicker = DataBindingUtil.setContentView(this, R.layout.activity_clicker);
 
-        //binding.setLifecycleOwner(this);
-
-
-
-
-
-
-
-        model = ViewModelProviders.of(this).get(Data.class);
-        model.mGame.setValue(game);
-        
 
     }
 
+}
 
 
 /*
