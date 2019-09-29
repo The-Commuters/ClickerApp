@@ -50,6 +50,8 @@ public class GameState extends BaseObservable {
         comboChountDown = COMBO_BASE;
         comboLength = COMBO_BASE;
         comboStrength = COMBO_STRENGTH_BASE;
+        notifyPropertyChanged(BR._all);
+
     }
 
     @Bindable
