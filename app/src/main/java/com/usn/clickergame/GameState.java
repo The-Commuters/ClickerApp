@@ -35,7 +35,7 @@ public class GameState extends BaseObservable {
     private int clickMultiplier = CLICK_STRENTH_BASE;
 
     private int comboChountDown = COMBO_BASE;
-    private int comboLevel = CLICK_STRENTH_MAXIMUM;
+    private int comboLength = COMBO_BASE;
     private int comboStrength = COMBO_STRENGTH_BASE;
 
     public GameState(int counter){
@@ -47,7 +47,7 @@ public class GameState extends BaseObservable {
         clickMultiplier = CLICK_STRENTH_BASE;
 
         comboChountDown = COMBO_BASE;
-        comboLevel = CLICK_STRENTH_MAXIMUM;
+        comboLength = CLICK_STRENTH_MAXIMUM;
         comboStrength = COMBO_STRENGTH_BASE;
     }
 
@@ -141,7 +141,7 @@ public class GameState extends BaseObservable {
     }
 
     public boolean adjustComboLevel(int adjustment){
-        return setComboLevel(comboLevel + adjustment);
+        return setComboLevel(comboLength + adjustment);
     }
 
 
