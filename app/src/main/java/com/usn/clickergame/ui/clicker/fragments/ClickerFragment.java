@@ -55,7 +55,6 @@ public class ClickerFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         model.mGame.postValue(game);
-        Log.d("Frag", "I was killed");
 
     }
 
@@ -98,7 +97,6 @@ public class ClickerFragment extends Fragment {
 
 
                 updateCounter();
-                Log.d("hi" ,"hi " + game.getCounter() );
 
 
 
