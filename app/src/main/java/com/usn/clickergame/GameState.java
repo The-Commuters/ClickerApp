@@ -1,6 +1,13 @@
-package com.usn.Clickergame;
+package com.usn.clickergame;
 
-public class GameState {
+
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
+
+
+public class GameState extends BaseObservable {
+
 
     // kombo-konstanter
     final static int COMBO_BASE = 10; //komboen starter høgt og teller nedover, derfor er der ingen bruk for en maximum bare en minimum
@@ -23,52 +30,73 @@ public class GameState {
     final static double COMBO_SPEED_GROWTH_RATE = 0.3;
 
     // verdier som skal brukes på tvers av appen
-    private int counter = COUNTER_MINIMUM;
+
+    int counter = COUNTER_MINIMUM;
     private int clickMultiplier = CLICK_STRENTH_BASE;
 
     private int comboChountDown = COMBO_BASE;
-    private int comboLevel = CLICK_STRENTH_MAXIMUM;
+    private int comboLength = COMBO_BASE;
     private int comboStrength = COMBO_STRENGTH_BASE;
+
+    public GameState(int counter) {
+
+        this.counter = counter;
+    }
 
     public void resetGameState(){
         counter = COUNTER_MINIMUM;
         clickMultiplier = CLICK_STRENTH_BASE;
 
         comboChountDown = COMBO_BASE;
-        comboLevel = CLICK_STRENTH_MAXIMUM;
+        comboLength = COMBO_BASE;
         comboStrength = COMBO_STRENGTH_BASE;
+        notifyPropertyChanged(BR._all);
+
     }
 
+    @Bindable
     public int getCounter() {
         return counter;
     }
 
+    @Bindable
     public int getClickMultiplier() {
         return clickMultiplier;
     }
 
+    @Bindable
     public int getComboChountDown() {
         return comboChountDown;
     }
 
-    public int getComboLevel() {
-        return comboLevel;
+    @Bindable
+    public int getComboLength() {
+        return comboLength;
     }
 
+    @Bindable
     public int getComboStrength() {
         return comboStrength;
     }
 
+
     public void setComboStrength(int comboStrength) {
+
         this.comboStrength = comboStrength;
+        notifyPropertyChanged(BR.comboStrength);
     }
+
 
     public boolean setCounter(int counter) {
 
         if (counter >= 1000000000){ // hindrer overtredning av int sin grense
             return false;
+
+
         }
         this.counter = counter;
+        notifyPropertyChanged(BR.counter);
+
         return true;
     }
 
@@ -86,6 +114,8 @@ public class GameState {
             return false;
         }
         this.clickMultiplier = clickMultiplier;
+        notifyPropertyChanged(BR.clickMultiplier);
+
         return true;
     }
 
@@ -94,6 +124,8 @@ public class GameState {
     }
 
     public void setComboChountDown(int comboChountDown) {
+        notifyPropertyChanged(BR.comboChountDown);
+
         this.comboChountDown = comboChountDown;
     }
 
@@ -105,24 +137,38 @@ public class GameState {
         if ((comboLevel >= COMBO_BASE) || (comboLevel <= COMBO_MINIMUM)){
             return false;
         }
-        this.comboLevel = comboLevel;
+        this.comboLength = comboLevel;
+        notifyPropertyChanged(BR.comboLength);
+
         return true;
     }
 
     public boolean adjustComboLevel(int adjustment){
-        return setComboLevel(comboLevel + adjustment);
+        return setComboLevel(comboLength + adjustment);
     }
 
+
+
+
+    @Bindable
     public int getClickStrenghtCost(){
+        notifyPropertyChanged(BR.clickStrenghtCost);
+
         return (int)(CLICK_STRENTH_COST_BASE * (CLICK_STRENTH_GROWTH_RATE * clickMultiplier));
     }
 
+
+    @Bindable
     public int getComboStrenghtCost(){
+        notifyPropertyChanged(BR.comboStrenghtCost);
         return (int)(COMBO_STRENGTH_COST_BASE * (COMBO_STRENGTH_GROWTH_RATE * comboStrength));
     }
 
+    @Bindable
     public int getComboSpeedCost(){
-        double revertedValue = COMBO_BASE - comboChountDown +1; // comboen teller nedover isteden for oppover så trekk det nåværende nivå fra det egentlige +1 og du har dens nåværende "level"
+        notifyPropertyChanged(BR.comboSpeedCost);
+        double revertedValue = COMBO_BASE - comboLength +1; // comboen teller nedover isteden for oppover så trekk det nåværende nivå fra det egentlige +1 og du har dens nåværende "level"
+
         return (int)(COMBO_SPEED_COST_BASE * (COMBO_SPEED_GROWTH_RATE * revertedValue));
     }
 

@@ -11,6 +11,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -18,6 +22,7 @@ android {
         }
     }
 }
+
 
 dependencies {
     def nav_version = "2.1.0"
@@ -36,5 +41,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'org.jetbrains:annotations-java5:15.0'
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion"
+
+
+    // Saved state module
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$savedStateVersion"
+
+
+
+
 
 }

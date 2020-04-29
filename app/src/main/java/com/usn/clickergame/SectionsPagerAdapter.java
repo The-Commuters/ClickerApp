@@ -1,17 +1,15 @@
-package com.usn.Clickergame;
+package com.usn.clickergame;
 
 import android.content.Context;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.usn.Clickergame.ClickerFragment;
-import com.usn.Clickergame.OptionsFragment;
-import com.usn.Clickergame.R;
-import com.usn.Clickergame.UpgradesFragment;
+import com.usn.clickergame.ui.clicker.fragments.ClickerFragment;
+import com.usn.clickergame.ui.clicker.fragments.UpgradesFragment;
+import com.usn.clickergame.ui.options.OptionsFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -28,15 +26,19 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         mContext = context;
     }
 
-// https://codinginflow.com/tutorials/android/tab-layout-with-fragments
+    // https://codinginflow.com/tutorials/android/tab-layout-with-fragments
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 1: return new UpgradesFragment();
-            case 2: return new OptionsFragment();
-            default: return new ClickerFragment();
+            case 1: return UpgradesFragment.newInstance();
+            case 2: return OptionsFragment.newInstance();
+            default: return ClickerFragment.newInstance();
         }
     }
+
+
+
+
 
     @Override
     public CharSequence getPageTitle(int position) {
@@ -48,4 +50,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // Show 2 total pages.
         return 3;
     }
+
+
+
+
 }
