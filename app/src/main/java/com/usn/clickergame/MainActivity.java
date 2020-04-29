@@ -1,9 +1,10 @@
 package com.usn.clickergame;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.SavedStateVMFactory;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity
 
     private Data model;
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         model = ViewModelProviders.of(this).get(com.usn.clickergame.Data.class);
 
@@ -35,8 +39,23 @@ public class MainActivity extends AppCompatActivity
 
         model.mGame.postValue(game);
 
+        game.setCounter(sharedPreferences.getInt("counter", 1));
+        game.setComboStrength(sharedPreferences.getInt("strength", 1));
+        game.setComboLevel(sharedPreferences.getInt("length", 1));
+        game.setClickMultiplier(sharedPreferences.getInt("click", 1));
+
         //ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sharedPreferences.edit().putInt("counter", game.getCounter()).apply();
+        sharedPreferences.edit().putInt("strength", game.getComboStrength()).apply();
+        sharedPreferences.edit().putInt("length", game.getComboLength()).apply();
+        sharedPreferences.edit().putInt("click", game.getClickMultiplier()).apply();
 
     }
 
